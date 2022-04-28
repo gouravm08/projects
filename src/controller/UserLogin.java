@@ -2,8 +2,8 @@ package controller;
 
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
+
+import java.sql.*;
 import java.sql.ResultSet;
 
 import javax.servlet.ServletException;
@@ -48,11 +48,16 @@ public class UserLogin extends HttpServlet {
 		String name=request.getParameter("username");
 		String pass=request.getParameter("password");
 		
+
+		Connection con1=JDBCClass.getCon();
+		
+
 		//Connection con=JDBCClass.getCon();
 		try {
 			 Class.forName("com.mysql.jdbc.Driver");
-			  Connection   con=DriverManager.getConnection("jdbc:mysql://localhost:3306/medical","root","");
-			PreparedStatement ps=con.prepareStatement("select * from user where user_name=? and user_password=?");
+			     con1=DriverManager.getConnection("jdbc:mysql://localhost:3306/medicalstock","root","");
+
+			PreparedStatement ps=con1.prepareStatement("select * from user where user_name=? and user_password=?");
 			ps.setString(1,name);
 			ps.setString(2, pass);
 			 boolean validationFlag=false;

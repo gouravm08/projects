@@ -2,8 +2,7 @@ package controller;
 
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
+import java.sql.*;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
@@ -45,9 +44,12 @@ public class AdminLoginServlet extends HttpServlet {
 		String name=request.getParameter("username");
 		String password=request.getParameter("password");
 	  try {
+
+	  Connection con1=JDBCClass.getCon();
+
 		  Class.forName("com.mysql.jdbc.Driver");
-		  Connection   con=DriverManager.getConnection("jdbc:mysql://localhost:3306/medical","root","");
-	   // con=JDBCClass.getCon();
+		  Connection   con=DriverManager.getConnection("jdbc:mysql://localhost:3306/medicalstock","root","");
+
 	  PreparedStatement ps=null;
 	   ps=con.prepareStatement("SELECT * FROM `admin` WHERE `admin_name`=? AND `admin_password`=?  OR `admin_email`=? AND `admin_password`=?");
 	  ps.setString(1,name);

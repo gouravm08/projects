@@ -11,10 +11,11 @@ public class JDBCClass {
 		if(con==null) {
 	   try {
 		Class.forName("com.mysql.jdbc.Driver");
-	    con=DriverManager.getConnection("jdbc:mysql://localhost:3306/medical","root","");
+	    con=DriverManager.getConnection("jdbc:mysql://localhost:3306/medicalstock","root","");
 	    }
     	catch(Exception e)
 	   {
+		e.printStackTrace();
 			/* e.printStackTrace(); */
     		System.out.println(e);
 	    }
